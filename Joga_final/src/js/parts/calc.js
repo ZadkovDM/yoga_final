@@ -29,7 +29,7 @@ function calc() {
 		if (this.value == '') {
 			totalValue.innerHTML = 0;
 		} else {
-			total = (daysSum * personsSum) * 4000;
+			total = (daysSum * personsSum) * 4000 * place.options[place.selectedIndex].value;
 			totalValue.innerHTML = total;
 		}
 
@@ -47,14 +47,14 @@ function calc() {
 
 
 	// Проверка введения только цифр
-	persons.addEventListener('keydown', function () {
+	persons.addEventListener('keydown', () => {
 		onlyNumbersFilter();
 	});
-	restDays.addEventListener('keydown', function () {
+	restDays.addEventListener('keydown', () => {
 		onlyNumbersFilter();
 	});
 
-	function onlyNumbersFilter() {
+	let onlyNumbersFilter = () => {
 		if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
 			// Разрешаем: Ctrl+A
 			(event.keyCode == 65 && event.ctrlKey === true) ||

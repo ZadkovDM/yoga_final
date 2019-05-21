@@ -28,25 +28,25 @@ function slider() {
 		dots[slideIndex - 1].classList.add('dot-active');
 	}
 
-	function plusSlides(n) {
+	let plusSlides = (n) => {
 		showSlides(slideIndex += n);
 	}
 	//Проверка текущего слайда и установка его
-	function currentSlide(n) {
+	let currentSlide = (n) => {
 		showSlides(slideIndex = n);
 	}
 
 	//Реализация стрелки назад
-	prev.addEventListener('click', function () {
+	prev.addEventListener('click', () => {
 		plusSlides(-1);
 	});
 
-	next.addEventListener('click', function () {
+	next.addEventListener('click', () => {
 		plusSlides(1);
 	});
 
 	//Перебор точек через делегирование
-	dotsWrap.addEventListener('click', function (event) {
+	dotsWrap.addEventListener('click', (event) => {
 		for (let i = 0; i < dots.length + 1; i++) {
 			if (event.target.classList.contains('dot') && event.target == dots[i - 1]) { //Проверка на нажатие точки
 				currentSlide(i);

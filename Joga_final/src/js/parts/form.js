@@ -26,13 +26,13 @@ function form() {
 
 	// Модальное окно
 
-	function sendForm(form, input) {
+	let sendForm = (form, input) => {
 		form.addEventListener('submit', (event) => {
 			event.preventDefault();
 			form.appendChild(statusMessage);
 			let formData = new FormData(form);
 
-			function postData(data) {
+			let postData = (data) => {
 
 				return new Promise(function (resolve, reject) {
 					let request = new XMLHttpRequest();
@@ -63,7 +63,7 @@ function form() {
 
 			} // Конец postData
 
-			function clearInput() {
+			let clearInput = () => {
 				for (let i = 0; i < input.length; i++) {
 					input[i].value = '';
 				}

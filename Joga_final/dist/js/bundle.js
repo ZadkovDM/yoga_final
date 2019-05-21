@@ -124,7 +124,7 @@ function calc() {
 		if (this.value == '') {
 			totalValue.innerHTML = 0;
 		} else {
-			total = (daysSum * personsSum) * 4000;
+			total = (daysSum * personsSum) * 4000 * place.options[place.selectedIndex].value;
 			totalValue.innerHTML = total;
 		}
 
@@ -142,14 +142,14 @@ function calc() {
 
 
 	// Проверка введения только цифр
-	persons.addEventListener('keydown', function () {
+	persons.addEventListener('keydown', () => {
 		onlyNumbersFilter();
 	});
-	restDays.addEventListener('keydown', function () {
+	restDays.addEventListener('keydown', () => {
 		onlyNumbersFilter();
 	});
 
-	function onlyNumbersFilter() {
+	let onlyNumbersFilter = () => {
 		if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
 			// Разрешаем: Ctrl+A
 			(event.keyCode == 65 && event.ctrlKey === true) ||
@@ -206,13 +206,13 @@ function form() {
 
 	// Модальное окно
 
-	function sendForm(form, input) {
+	let sendForm = (form, input) => {
 		form.addEventListener('submit', (event) => {
 			event.preventDefault();
 			form.appendChild(statusMessage);
 			let formData = new FormData(form);
 
-			function postData(data) {
+			let postData = (data) => {
 
 				return new Promise(function (resolve, reject) {
 					let request = new XMLHttpRequest();
@@ -243,7 +243,7 @@ function form() {
 
 			} // Конец postData
 
-			function clearInput() {
+			let clearInput = () => {
 				for (let i = 0; i < input.length; i++) {
 					input[i].value = '';
 				}
@@ -361,25 +361,25 @@ function slider() {
 		dots[slideIndex - 1].classList.add('dot-active');
 	}
 
-	function plusSlides(n) {
+	let plusSlides = (n) => {
 		showSlides(slideIndex += n);
 	}
 	//Проверка текущего слайда и установка его
-	function currentSlide(n) {
+	let currentSlide = (n) => {
 		showSlides(slideIndex = n);
 	}
 
 	//Реализация стрелки назад
-	prev.addEventListener('click', function () {
+	prev.addEventListener('click', () => {
 		plusSlides(-1);
 	});
 
-	next.addEventListener('click', function () {
+	next.addEventListener('click', () => {
 		plusSlides(1);
 	});
 
 	//Перебор точек через делегирование
-	dotsWrap.addEventListener('click', function (event) {
+	dotsWrap.addEventListener('click', (event) => {
 		for (let i = 0; i < dots.length + 1; i++) {
 			if (event.target.classList.contains('dot') && event.target == dots[i - 1]) { //Проверка на нажатие точки
 				currentSlide(i);
@@ -405,7 +405,7 @@ function tabs() {
 		info = document.querySelector('.info-header'),
 		tabContent = document.querySelectorAll('.info-tabcontent');
 
-	function hideTabContent(a) {
+	let hideTabContent = (a) => {
 		for (let i = a; i < tabContent.length; i++) {
 			tabContent[i].classList.remove('show');
 			tabContent[i].classList.add('hide');
@@ -414,7 +414,7 @@ function tabs() {
 
 	hideTabContent(1);
 
-	function showTabContent(b) {
+	let showTabContent = (b) => {
 		if (tabContent[b].classList.contains('hide')) {
 			tabContent[b].classList.remove('hide');
 			tabContent[b].classList.add('show');
@@ -449,7 +449,7 @@ module.exports = tabs;
 function timer() {
 	let deadline = '2019-07-15';
 
-	function grtTimeRemaining(endtime) {
+	let grtTimeRemaining = (endtime) => {
 		let t = Date.parse(endtime) - Date.parse(new Date()),
 			seconds = Math.floor((t / 1000) % 60),
 			minutes = Math.floor((t / 1000 / 60) % 60),
@@ -463,14 +463,14 @@ function timer() {
 		};
 	}
 
-	function setClock(id, endtime) {
+	let setClock = (id, endtime) => {
 		let timer = document.getElementById(id),
 			hours = timer.querySelector('.hours'),
 			minutes = timer.querySelector('.minutes'),
 			seconds = timer.querySelector('.seconds'),
 			timeInteval = setInterval(updatesClock, 1000);
 
-		function zero(a) {
+		let zero = (a) => {
 			if (a < 10) {
 				a = '0' + a;
 			}
